@@ -160,5 +160,7 @@ mvn mybatis-generator:generate
 	</context-param>
 	```
 	* applicationContext.xml
+	Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
+
 <a name="junit">
 ##Junit测试
