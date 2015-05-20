@@ -143,6 +143,22 @@ mvn mybatis-generator:generate
 
 <a name="spring-config"/>
 ##Spring配置
-
+* Spring配置文件存放位置：Web模块resources/spring目录下
+	* applicationContext-common.xml
+	用于配置Spring公共配置:增加扫描注解,消息定制等
+	* applicationContext-dataSource.xml
+	用于配置数据源:DruidDataSource以及Mybatis相关配置
+	* applicationContext-mybatis.xml
+	Mybatis配置文件
+	* applicationContext-profile.xml
+	用于配置多个需要加载的属性文件,Junit由@ActiveProfiles([profile])指定加载的属性文件
+	项目启动则需要在web.xml中增加配置
+	```
+	<context-param>
+		<param-name>spring.profiles.default</param-name>
+		<param-value>[profile]</param-value>
+	</context-param>
+	```
+	* applicationContext.xml
 <a name="junit">
 ##Junit测试
