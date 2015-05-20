@@ -63,14 +63,18 @@
 ```xml
 ...
 <!-- Mybatis -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:mapper/*.xml" />
-		<property name="typeAliasesPackage" value="com.demo.java.entity" />
-	</bean>
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.demo.java.dao" />
-	</bean>
+<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 数据源引用 -->
+	<property name="dataSource" ref="dataSource" />
+	<!-- mybatis的映射文件 -->
+	<property name="mapperLocations" value="classpath:mapper/*.xml" />
+	<!-- 要映射类的包路径，如果使用了这种方式,则configLocation中不必再进行声明 -->
+	<property name="typeAliasesPackage" value="com.demo.java.entity" />
+</bean>
+<!-- 这段配置会扫描com.demo.java.dao下的所有接口,然后创建各自接口的动态代理类 -->
+<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+	<property name="basePackage" value="com.demo.java.dao" />
+</bean>
 ...
 ```
 <a name="mybatis-generator"/>
