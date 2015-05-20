@@ -82,6 +82,10 @@
 * mybatis支持根据数据库表自动生成bean dao xml文件
 * 对应配置文件Service模块resources/generatorConfig.xml
 * 注：因为本Demo中bean dao xml等文件都存放在Service中,所以配置文件放到Service模块
+* 配置完成后使用DOS命令进入到Service模块根目录执行
+```
+mvn mybatis-generator:generate
+```
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
@@ -136,7 +140,6 @@
 	</context>
 </generatorConfiguration>
 ```
-
 
 <a name="spring-config"/>
 ##Spring配置
