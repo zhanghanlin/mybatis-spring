@@ -14,7 +14,7 @@
 
 <a name="info"/>
 ##项目说明
-* 本项目作用为将Mybatis与Spring整合到一起
+* 本项目作用为将`Mybatis`与`Spring`整合到一起
 * 项目处于开发阶段
 * ......
 
@@ -25,13 +25,13 @@
 * 主要存放实体以及相关核心代码
 * 主要分为四个子模块
 	* dao
-		* Mybatis自动生成,一般存放*Mapper.java,相当于Hibernate中的Dao
+		* `Mybatis`自动生成,一般存放`*Mapper.java`,相当于`Hibernate`中的`Dao`
 	* entity
-		* Mybatis自动生成,存放对于数据库的Bean
+		* `Mybatis`自动生成,存放对于数据库的`Bean`
 	* service
 		* 业务层,对外提供服务
 	* resources/mapper
-		* Mybatis自动生成,一般存放*Mapper.xml,为*Mapper.java的映射文件
+		* `Mybatis`自动生成,一般存放`*Mapper.xml`,为`*Mapper.java`的映射文件
 
 <a name="util"/>
 ###Util模块
@@ -39,13 +39,13 @@
 
 <a name="web"/>
 ###Web模块
-* 主要用于展示页面,相当于View层
+* 主要用于展示页面,相当于`View`层
 
 <a name="mybatis"/>
 ##MyBatis配置
 <a name="mybatis-spring"/>
-###mybatis与spring整合配置
-* 相关配置文件对应Web模块resources/spring/applicationContext-mybatis.xml
+###`mybatis与spring整合配置
+* 相关配置文件对应Web模块`resources/spring/applicationContext-mybatis.xml`
 ```xml
 <configuration>
 	<settings>
@@ -71,7 +71,7 @@
 ```
 <a name="mybatis-data"/>
 ###mybatis数据源以及注入配置
-* 相关配置文件对应Web模块resources/spring/applicationContext-dataSource.xml
+* 相关配置文件对应Web模块`resources/spring/applicationContext-dataSource.xml`
 ```xml
 <!-- Mybatis -->
 <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -89,10 +89,10 @@
 ```
 <a name="mybatis-generator"/>
 ###mybatis自动生成代码
-* mybatis支持根据数据库表自动生成bean dao xml文件
-* 对应配置文件Service模块resources/generatorConfig.xml
-* 注：因为本Demo中bean dao xml等文件都存放在Service中,所以配置文件放到Service模块
-* 需要在Maven的pom.xml中增加mybatis-generator插件
+* `Mybatis`支持根据数据库表自动生成`bean` `dao` `xml`文件
+* 对应配置文件Service模块`resources/generatorConfig.xml`
+* 注：因为本Demo中`bean` `dao` `xml`等文件都存放在Service中,所以配置文件放到Service模块
+* 需要在Maven的`pom.xml`中增加`mybatis-generator`插件
 ```xml
 <!-- mybatis -->
 <plugin>
@@ -158,17 +158,17 @@ mvn mybatis-generator:generate
 
 <a name="spring-config"/>
 ##Spring配置
-* Spring配置文件存放位置：Web模块resources/spring目录下
+* Spring配置文件存放位置：Web模块`resources/spring`目录下
 	* applicationContext-common.xml
 		* 用于配置Spring公共配置:增加扫描注解,消息定制等
 	* applicationContext-dataSource.xml
-		* 用于配置数据源:DruidDataSource以及Mybatis相关配置
+		* 用于配置数据源:`DruidDataSource`以及`Mybatis`相关配置
 	* applicationContext-mybatis.xml
-		* Mybatis配置文件
+		* `Mybatis`配置文件
 	* applicationContext-profile.xml
 		* 用于配置多个需要加载的属性文件
-		* Junit由@ActiveProfiles([profile])指定加载的属性文件
-		* Web容器启动则需要在web.xml中增加以下配置
+		* `Junit`由`@ActiveProfiles([profile])`指定加载的属性文件
+		* Web容器启动则需要在`web.xml`中增加以下配置
 		```
 		<context-param>
 			<param-name>spring.profiles.default</param-name>
@@ -180,9 +180,9 @@ mvn mybatis-generator:generate
 
 <a name="junit">
 ##Junit测试
-* Junit测试目录为Web模块下src/test/java目录
-* 新增Junit测试类直接集成com.demo.java.test.AbstractTest即可
-* 加载配置文件信息以在com.demo.java.test.AbstractTest配置完毕
+* Junit测试目录为Web模块下`src/test/java`目录
+* 新增Junit测试类直接集成`com.demo.java.test.AbstractTest`即可
+* 加载配置文件信息以在`com.demo.java.test.AbstractTest`配置完毕
 ```java
 @RunWith(SpringJUnit4ClassRunner.class)
 //指定需要加载的属性文件
