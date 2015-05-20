@@ -1,5 +1,4 @@
 # mybatis-spring
-本项目为mybatis + spring测试demo
 #<a name="index"/>目录
 * 项目说明
 * 模块划分
@@ -13,18 +12,29 @@
 * [Spring配置](#spring-config)
 * [Junit测试](#junit)
 
+##项目说明
+
 ##模块划分
 <a name="service"/>
 ###Service模块
-主要存放实体以及相关核心代码
+* 主要存放实体以及相关核心代码
+* 主要分为四个子模块
+	* dao
+		* Mybatis自动生成,一般存放*Mapper.java,相当于Hibernate中的Dao
+	* entity
+		* Mybatis自动生成,存放对于数据库的Bean
+	* service
+		* 业务层,对外提供服务
+	* resources/mapper
+		* Mybatis自动生成,一般存放*Mapper.xml,为*Mapper.java的映射文件
 
 <a name="util"/>
 ###Util模块
-主要存放项目需要的工具包
+* 主要存放项目需要的工具类
 
 <a name="web"/>
 ###Web模块
-主要用于展示页面
+* 主要用于展示页面,相当于View层
 
 ##MyBatis配置
 <a name="mybatis-spring"/>
@@ -77,7 +87,7 @@
 * 对应配置文件Service模块resources/generatorConfig.xml
 * 注：因为本Demo中bean dao xml等文件都存放在Service中,所以配置文件放到Service模块
 * 配置完成后使用DOS命令进入到Service模块根目录执行以下命令
-```base
+```Bash
 mvn mybatis-generator:generate
 ```
 ```xml
