@@ -59,6 +59,20 @@
 ```
 <a name="mybatis-data"/>
 ###mybatis数据源以及注入配置
+相关配置文件对应Web模块resources/spring/applicationContext-dataSource.xml
+```xml
+...
+<!-- Mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations" value="classpath:mapper/*.xml" />
+		<property name="typeAliasesPackage" value="com.demo.java.entity" />
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.demo.java.dao" />
+	</bean>
+...
+```
 <a name="mybatis-generator"/>
 ###mybatis自动生成代码
 
