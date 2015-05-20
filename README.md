@@ -82,7 +82,7 @@
 * mybatis支持根据数据库表自动生成bean dao xml文件
 * 对应配置文件Service模块resources/generatorConfig.xml
 * 注：因为本Demo中bean dao xml等文件都存放在Service中,所以配置文件放到Service模块
-* 配置完成后使用DOS命令进入到Service模块根目录执行
+* 配置完成后使用DOS命令进入到Service模块根目录执行以下命令
 ```
 mvn mybatis-generator:generate
 ```
@@ -151,8 +151,9 @@ mvn mybatis-generator:generate
 	* applicationContext-mybatis.xml
 	Mybatis配置文件
 	* applicationContext-profile.xml
-	用于配置多个需要加载的属性文件,Junit由@ActiveProfiles([profile])指定加载的属性文件
-	项目启动则需要在web.xml中增加配置
+	用于配置多个需要加载的属性文件
+	Junit由@ActiveProfiles([profile])指定加载的属性文件
+	Web容器启动则需要在web.xml中增加以下配置
 	```
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
