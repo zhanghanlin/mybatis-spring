@@ -92,10 +92,20 @@
 * mybatis支持根据数据库表自动生成bean dao xml文件
 * 对应配置文件Service模块resources/generatorConfig.xml
 * 注：因为本Demo中bean dao xml等文件都存放在Service中,所以配置文件放到Service模块
-* 配置完成后使用DOS命令进入到Service模块根目录执行以下命令
-```Bash
-mvn mybatis-generator:generate
+* 需要在Maven的pom.xml中增加mybatis-generator插件
+```xml
+<!-- mybatis -->
+<plugin>
+	<groupId>org.mybatis.generator</groupId>
+	<artifactId>mybatis-generator-maven-plugin</artifactId>
+	<version>${mybatis-generator-maven-plugin.version}</version>
+	<configuration>
+		<verbose>true</verbose>
+		<overwrite>true</overwrite>
+	</configuration>
+</plugin>
 ```
+* 具体配置文件
 ```xml
 ...
 <!-- 引入配置文件 -->
@@ -140,6 +150,10 @@ mvn mybatis-generator:generate
 		enableSelectByExample="false" enableUpdateByExample="false">
 	</table>
 </context>
+```
+* 配置完成后使用DOS命令进入到Service模块根目录执行以下命令
+```Bash
+mvn mybatis-generator:generate
 ```
 
 <a name="spring-config"/>
