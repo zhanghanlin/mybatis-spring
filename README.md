@@ -1,19 +1,24 @@
 # mybatis-spring
 #<a name="index"/>目录
-* 项目说明
-* 模块划分
+* [项目说明](#info)
+* [模块划分](#mobile)
   * [Service模块](#service)
   * [Util模块](#util)
   * [Web模块](#web)
-* MyBatis配置
+* [MyBatis配置](#mybatis)
  * [mybatis与spring整合配置](#mybatis-spring)
  * [mybatis数据源以及注入配置](#mybatis-data)
  * [mybatis自动生成代码](#mybatis-generator)
 * [Spring配置](#spring-config)
 * [Junit测试](#junit)
 
+<a name="info"/>
 ##项目说明
+* 本项目作用为将Mybatis与Spring整合到一起
+* 项目处于开发阶段
+* ......
 
+<a name="mobile"/>
 ##模块划分
 <a name="service"/>
 ###Service模块
@@ -36,6 +41,7 @@
 ###Web模块
 * 主要用于展示页面,相当于View层
 
+<a name="mybatis"/>
 ##MyBatis配置
 <a name="mybatis-spring"/>
 ###mybatis与spring整合配置
