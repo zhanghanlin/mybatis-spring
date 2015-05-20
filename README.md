@@ -140,7 +140,6 @@ mvn mybatis-generator:generate
 		enableSelectByExample="false" enableUpdateByExample="false">
 	</table>
 </context>
-</generatorConfiguration>
 ```
 
 <a name="spring-config"/>
