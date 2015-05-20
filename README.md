@@ -145,15 +145,15 @@ mvn mybatis-generator:generate
 ##Spring配置
 * Spring配置文件存放位置：Web模块resources/spring目录下
 	* applicationContext-common.xml
-	用于配置Spring公共配置:增加扫描注解,消息定制等
+		* 用于配置Spring公共配置:增加扫描注解,消息定制等
 	* applicationContext-dataSource.xml
-	用于配置数据源:DruidDataSource以及Mybatis相关配置
+		* 用于配置数据源:DruidDataSource以及Mybatis相关配置
 	* applicationContext-mybatis.xml
-	Mybatis配置文件
+		* Mybatis配置文件
 	* applicationContext-profile.xml
-	用于配置多个需要加载的属性文件
-	Junit由@ActiveProfiles([profile])指定加载的属性文件
-	Web容器启动则需要在web.xml中增加以下配置
+		* 用于配置多个需要加载的属性文件
+		* Junit由@ActiveProfiles([profile])指定加载的属性文件
+		* Web容器启动则需要在web.xml中增加以下配置
 	```
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
@@ -161,7 +161,17 @@ mvn mybatis-generator:generate
 	</context-param>
 	```
 	* applicationContext.xml
-	Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
+		* Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
 
 <a name="junit">
 ##Junit测试
+* Junit测试目录为Web模块下src/test/java目录
+* 新增Junit测试类直接集成com.demo.java.test.AbstractTest即可
+* 加载配置文件信息以在com.demo.java.test.AbstractTest配置完毕
+```java
+@RunWith(SpringJUnit4ClassRunner.class)
+//指定需要加载的属性文件
+@ActiveProfiles("test")
+//指定需要加载的配置文件
+@ContextConfiguration({ "classpath:spring/applicationContext.xml" })
+```
