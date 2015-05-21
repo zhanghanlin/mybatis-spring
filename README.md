@@ -11,6 +11,7 @@
  * [mybatis自动生成代码](#mybatis-generator)
 * [Spring配置](#spring-config)
 * [Junit测试](#junit)
+* [登陆Demo](#login_demo)
 
 <a name="info"></a>
 ##项目说明
@@ -190,3 +191,8 @@ mvn mybatis-generator:generate
 //指定需要加载的配置文件
 @ContextConfiguration({ "classpath:spring/applicationContext.xml" })
 ```
+<a name="login_demo"></a>
+##登陆Demo
+* 启动项目后,可访问 ['host']:['port']/login进入到登录页
+* 输入正确的帐号密码可看到 '${userName}',Hello,World!
+* 帐号或密码错误则不会展示 '${userName}'
