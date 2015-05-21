@@ -18,8 +18,15 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.params.HttpConnectionManagerParams;
 import org.apache.commons.httpclient.params.HttpMethodParams;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.demo.java.utils.Constants;
 
 public class HttpUtils {
+
+    static Logger logger = LoggerFactory.getLogger(HttpUtils.class);
+
     final static int CONNECT_TIME_OUT = 1000 * 2;
     final static int READ_TIME_OUT = 1000 * 2;
     final static int GET_CACHE = 1024 * 4;
@@ -32,8 +39,7 @@ public class HttpUtils {
             mgrParams.setSoTimeout(READ_TIME_OUT);
             client.getHttpConnectionManager().setParams(mgrParams);
         } catch (Exception e) {
-            // TODO: handle exception
-            e.printStackTrace();
+            logger.error("getClient Exception : {}", e.getMessage(), e);
         }
         return client;
     }
@@ -45,26 +51,29 @@ public class HttpUtils {
      * @param paramMap
      */
     public static String doGet(String url, Map<String, String> paramMap) {
-        String res = "Error";
+        String res = "";
         HttpClient client = null;
         GetMethod method = null;
         ByteArrayOutputStream outstream = null;
         InputStream instream = null;
         int statusCode = 0;
         try {
+            StringBuffer urlSb = new StringBuffer(url);
             if ((paramMap != null) && !paramMap.isEmpty()) {
-                url += url.indexOf("?") > 0 ? "&" : "?";
+                urlSb.append(url.indexOf("?") > 0 ? "&" : "?");
                 for (String key : paramMap.keySet()) {
                     String value = paramMap.get(key);
-                    url += key + "=" + URLEncoder.encode(value, "UTF-8") + "&";
+                    urlSb.append(key).append("=").append(URLEncoder.encode(value, Constants.ENCODING)).append("&");
                 }
             }
             client = getClient();
-            method = new GetMethod(url);
+            logger.info("doGet url : {}", urlSb.toString());
+            method = new GetMethod(urlSb.toString());
             // method set retry times
             HttpMethodRetryHandler myRetryHandler = new DefaultHttpMethodRetryHandler(3, false);
             method.getParams().setParameter(HttpMethodParams.RETRY_HANDLER, myRetryHandler);
             statusCode = client.executeMethod(method);
+            logger.info("doGet HttpStatus Code : {}", statusCode);
             if (statusCode == HttpStatus.SC_OK) {
                 instream = method.getResponseBodyAsStream();
                 if (instream != null) {
@@ -79,11 +88,11 @@ public class HttpUtils {
                 res = new String(outstream.toByteArray());
             }
         } catch (HttpException e) {
-            e.printStackTrace();
+            logger.error("doGet HttpException : {}", e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("doGet IOException : {}", e.getMessage(), e);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("doGet Exception : {}", e.getMessage(), e);
         } finally {
             if (method != null) {
                 method.releaseConnection();
@@ -100,7 +109,7 @@ public class HttpUtils {
      * @return
      */
     public static String doPost(String url, Map<String, String> params) {
-        String res = "error";
+        String res = "";
         HttpClient client = null;
         PostMethod postMethod = null;
         ByteArrayOutputStream outstream = null;
@@ -121,9 +130,10 @@ public class HttpUtils {
             }
             HttpMethodParams hmParams = postMethod.getParams();
             hmParams.setParameter(HttpMethodParams.RETRY_HANDLER, myRetryHandler);
-            hmParams.setParameter(HttpMethodParams.CREDENTIAL_CHARSET, "UTF-8");
+            hmParams.setParameter(HttpMethodParams.CREDENTIAL_CHARSET, Constants.ENCODING);
             postMethod.setParams(hmParams);
             statusCode = client.executeMethod(postMethod);
+            logger.info("doPost HttpStatus Code : {}", statusCode);
             if (statusCode == HttpStatus.SC_OK) {
                 instream = postMethod.getResponseBodyAsStream();
                 if (instream != null) {
@@ -138,11 +148,11 @@ public class HttpUtils {
                 res = new String(outstream.toByteArray());
             }
         } catch (HttpException e) {
-            e.printStackTrace();
+            logger.error("doPost HttpException : {}", e.getMessage(), e);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("doPost IOException : {}", e.getMessage(), e);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("doPost Exception : {}", e.getMessage(), e);
         } finally {
             if (postMethod != null) {
                 postMethod.releaseConnection();
