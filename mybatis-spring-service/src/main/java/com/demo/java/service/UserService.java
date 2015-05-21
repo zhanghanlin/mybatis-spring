@@ -1,8 +1,13 @@
 package com.demo.java.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.demo.java.entity.User;
 
 public interface UserService {
+
+    Logger logger = LoggerFactory.getLogger(UserService.class);
 
     /**
      * 
@@ -18,26 +23,13 @@ public interface UserService {
     /**
      * 
      * 插入用户. <br/>
-     * 不验证字段非空.<br/>
      * 
      * @author zhanghanlin
      * @param user
      * @return
      * @since JDK 1.7
      */
-    int insert(User user);
-
-    /**
-     * 
-     * 插入用户. <br/>
-     * 验证字段非空.<br/>
-     * 
-     * @author zhanghanlin
-     * @param user
-     * @return
-     * @since JDK 1.7
-     */
-    int insertSelective(User user);
+    Integer insert(User user);
 
     /**
      * 
@@ -53,19 +45,6 @@ public interface UserService {
     /**
      * 
      * 更新用户. <br/>
-     * 验证字段非空.<br/>
-     * 
-     * @author zhanghanlin
-     * @param user
-     * @return
-     * @since JDK 1.7
-     */
-    int updateByIdSelective(User user);
-
-    /**
-     * 
-     * 更新用户. <br/>
-     * 不验证字段非空.<br/>
      * 
      * @author zhanghanlin
      * @param user
@@ -85,4 +64,16 @@ public interface UserService {
      * @since JDK 1.7
      */
     User vaild(String userName, String password);
+
+    /**
+     * 更新用户密码.<br/>
+     * 
+     * @author zhanghanlin
+     * @param userName
+     * @param oldPwd
+     * @param newPwd
+     * @return
+     * @since JDK 1.7
+     */
+    int updatePassword(String userName, String oldPwd, String newPwd);
 }

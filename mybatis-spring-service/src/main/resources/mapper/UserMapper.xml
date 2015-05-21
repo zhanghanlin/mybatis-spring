@@ -1,426 +1,176 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.demo.java.dao.UserMapper">
-  <resultMap id="BaseResultMap" type="com.demo.java.entity.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="sources" jdbcType="INTEGER" property="sources" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="sex" jdbcType="INTEGER" property="sex" />
-    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    <result column="person_Id" jdbcType="VARCHAR" property="personId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-    <result column="changed_at" jdbcType="TIMESTAMP" property="changedAt" />
-    <result column="version" jdbcType="INTEGER" property="version" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, user_name, password, mobile, email, sources, nick_name, real_name, sex, birthday, 
-    person_Id, status, created_at, changed_at, version
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from p_user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from p_user
-    where user_name = #{userName,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from p_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.demo.java.entity.User">
-    insert into p_user (id, user_name, password, 
-      mobile, email, sources, 
-      nick_name, real_name, sex, 
-      birthday, person_Id, status, 
-      created_at, changed_at, version
-      )
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sources,jdbcType=INTEGER}, 
-      #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-      #{birthday,jdbcType=TIMESTAMP}, #{personId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{changedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.demo.java.entity.User">
-    insert into p_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="sources != null">
-        sources,
-      </if>
-      <if test="nickName != null">
-        nick_name,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="personId != null">
-        person_Id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="changedAt != null">
-        changed_at,
-      </if>
-      <if test="version != null">
-        version,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sources != null">
-        #{sources,jdbcType=INTEGER},
-      </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="personId != null">
-        #{personId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changedAt != null">
-        #{changedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.demo.java.entity.User">
-    update p_user
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sources != null">
-        sources = #{sources,jdbcType=INTEGER},
-      </if>
-      <if test="nickName != null">
-        nick_name = #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="personId != null">
-        person_Id = #{personId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changedAt != null">
-        changed_at = #{changedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        version = #{version,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.demo.java.entity.User">
-    update p_user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      sources = #{sources,jdbcType=INTEGER},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
-      person_Id = #{personId,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      changed_at = #{changedAt,jdbcType=TIMESTAMP},
-      version = #{version,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <resultMap id="BaseResultMap" type="com.demo.java.entity.User">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="user_name" jdbcType="VARCHAR" property="userName" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
-    <result column="email" jdbcType="VARCHAR" property="email" />
-    <result column="sources" jdbcType="INTEGER" property="sources" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="sex" jdbcType="INTEGER" property="sex" />
-    <result column="birthday" jdbcType="TIMESTAMP" property="birthday" />
-    <result column="person_Id" jdbcType="VARCHAR" property="personId" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
-    <result column="changed_at" jdbcType="TIMESTAMP" property="changedAt" />
-    <result column="version" jdbcType="INTEGER" property="version" />
-  </resultMap>
-  <sql id="Base_Column_List">
-    id, user_name, password, mobile, email, sources, nick_name, real_name, sex, birthday, 
-    person_Id, status, created_at, changed_at, version
-  </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from p_user
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from p_user
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.demo.java.entity.User">
-    insert into p_user (id, user_name, password, 
-      mobile, email, sources, 
-      nick_name, real_name, sex, 
-      birthday, person_Id, status, 
-      created_at, changed_at, version
-      )
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{mobile,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{sources,jdbcType=INTEGER}, 
-      #{nickName,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
-      #{birthday,jdbcType=TIMESTAMP}, #{personId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{createdAt,jdbcType=TIMESTAMP}, #{changedAt,jdbcType=TIMESTAMP}, #{version,jdbcType=INTEGER}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.demo.java.entity.User">
-    insert into p_user
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="userName != null">
-        user_name,
-      </if>
-      <if test="password != null">
-        password,
-      </if>
-      <if test="mobile != null">
-        mobile,
-      </if>
-      <if test="email != null">
-        email,
-      </if>
-      <if test="sources != null">
-        sources,
-      </if>
-      <if test="nickName != null">
-        nick_name,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="sex != null">
-        sex,
-      </if>
-      <if test="birthday != null">
-        birthday,
-      </if>
-      <if test="personId != null">
-        person_Id,
-      </if>
-      <if test="status != null">
-        status,
-      </if>
-      <if test="createdAt != null">
-        created_at,
-      </if>
-      <if test="changedAt != null">
-        changed_at,
-      </if>
-      <if test="version != null">
-        version,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userName != null">
-        #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sources != null">
-        #{sources,jdbcType=INTEGER},
-      </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="personId != null">
-        #{personId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdAt != null">
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changedAt != null">
-        #{changedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        #{version,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.demo.java.entity.User">
-    update p_user
-    <set>
-      <if test="userName != null">
-        user_name = #{userName,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null">
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null">
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="sources != null">
-        sources = #{sources,jdbcType=INTEGER},
-      </if>
-      <if test="nickName != null">
-        nick_name = #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null">
-        sex = #{sex,jdbcType=INTEGER},
-      </if>
-      <if test="birthday != null">
-        birthday = #{birthday,jdbcType=TIMESTAMP},
-      </if>
-      <if test="personId != null">
-        person_Id = #{personId,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null">
-        status = #{status,jdbcType=INTEGER},
-      </if>
-      <if test="createdAt != null">
-        created_at = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="changedAt != null">
-        changed_at = #{changedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="version != null">
-        version = #{version,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.demo.java.entity.User">
-    update p_user
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      mobile = #{mobile,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      sources = #{sources,jdbcType=INTEGER},
-      nick_name = #{nickName,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=INTEGER},
-      birthday = #{birthday,jdbcType=TIMESTAMP},
-      person_Id = #{personId,jdbcType=VARCHAR},
-      status = #{status,jdbcType=INTEGER},
-      created_at = #{createdAt,jdbcType=TIMESTAMP},
-      changed_at = #{changedAt,jdbcType=TIMESTAMP},
-      version = #{version,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.demo.java.entity.User">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="user_name" property="userName" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="mobile" property="mobile" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="sources" property="sources" jdbcType="INTEGER" />
+		<result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+		<result column="real_name" property="realName" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="birthday" property="birthday" jdbcType="TIMESTAMP" />
+		<result column="person_Id" property="personId" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
+		<result column="changed_at" property="changedAt" jdbcType="TIMESTAMP" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, user_name, password, mobile, email, sources, nick_name,
+		real_name,
+		sex, birthday,
+		person_Id, status, created_at, changed_at,
+		version
+	</sql>
+	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from p_user
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="selectByUserName" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from p_user
+		where user_name = #{userName,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		delete from p_user
+		where id
+		= #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.demo.java.entity.User"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into p_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="userName != null">
+				user_name,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="sources != null">
+				sources,
+			</if>
+			<if test="nickName != null">
+				nick_name,
+			</if>
+			<if test="realName != null">
+				real_name,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="personId != null">
+				person_Id,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createdAt != null">
+				created_at,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="userName != null">
+				#{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sources != null">
+				#{sources,jdbcType=INTEGER},
+			</if>
+			<if test="nickName != null">
+				#{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				#{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="personId != null">
+				#{personId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="createdAt != null">
+				#{createdAt,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateById" parameterType="com.demo.java.entity.User">
+		update p_user
+		<set>
+			<if test="userName != null">
+				user_name = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="sources != null">
+				sources = #{sources,jdbcType=INTEGER},
+			</if>
+			<if test="nickName != null">
+				nick_name = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="realName != null">
+				real_name = #{realName,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=INTEGER},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=TIMESTAMP},
+			</if>
+			<if test="personId != null">
+				person_Id = #{personId,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createdAt != null">
+				created_at = #{createdAt,jdbcType=TIMESTAMP},
+			</if>
+			changed_at = now(),
+			version = version + 1,
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updatePassword" parameterType="com.demo.java.entity.User">
+		update p_user
+		<set>
+			password = #{password,jdbcType=VARCHAR},
+			changed_at = now(),
+			version = version + 1,
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>
