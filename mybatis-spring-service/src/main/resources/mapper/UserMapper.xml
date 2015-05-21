@@ -28,6 +28,12 @@
     from p_user
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByUserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from p_user
+    where user_name = #{userName,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from p_user
     where id = #{id,jdbcType=INTEGER}

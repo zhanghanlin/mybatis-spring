@@ -43,4 +43,13 @@ public class UserServiceImpl implements UserService {
     public int updateById(User user) {
         return userMapper.updateByPrimaryKey(user);
     }
+
+    @Override
+    public User vaild(String userName, String password) {
+        User user = userMapper.selectByUserName(userName);
+        if (null != user) {
+        }
+        // TODO Auto-generated method stub
+        return null;
+    }
 }
