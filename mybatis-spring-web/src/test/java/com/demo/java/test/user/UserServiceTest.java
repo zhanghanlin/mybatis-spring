@@ -19,7 +19,7 @@ public class UserServiceTest extends AbstractTest {
     @Resource
     UserService userService;
 
-    static Integer userId = 10011;
+    static Integer userId = 0;
 
     @Test
     public void testAInsertSelective() {
