@@ -193,6 +193,6 @@ mvn mybatis-generator:generate
 ```
 <a name="login_demo"></a>
 ##登陆Demo
-* 启动项目后,可访问 [`host`]:[`port`]/login进入到登录页
+* 启动项目后,可访问 `[host]:[port]/login`进入到登录页
 * 输入正确的帐号密码可看到 `${userName}`,Hello,World!
 * 帐号或密码错误则不会展示 `${userName}`
