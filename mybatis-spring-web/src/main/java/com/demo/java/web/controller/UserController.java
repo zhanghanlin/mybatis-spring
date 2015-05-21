@@ -8,6 +8,8 @@
 
 package com.demo.java.web.controller;
 
+import java.util.UUID;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.alibaba.fastjson.JSONObject;
 import com.demo.java.entity.User;
 import com.demo.java.service.UserService;
+import com.demo.java.utils.string.StringUtils;
+import com.demo.java.web.utils.PagePath;
 
 /**
  * ClassName:LoginController <br/>
@@ -39,11 +43,6 @@ public class UserController {
     @Resource
     UserService userService;
 
-    @RequestMapping("/login")
-    public String login(HttpServletRequest request) {
-        return "/view/jsp/login";
-    }
-
     /**
      * 
      * 登陆.<br/>
@@ -54,13 +53,30 @@ public class UserController {
      * @since JDK 1.7
      */
     @RequestMapping("/signIn")
-    public String signIn(HttpServletRequest request, String userName, String password) {
+    public String signIn(HttpServletRequest request, String userName, String password, String uuid) {
+        String requestUUID = request.getSession().getAttribute("uuid") != null ? request.getSession().getAttribute("uuid").toString() : "";
+        setUUID(request); // 重置UUID
+        if (StringUtils.isBlank(requestUUID) || StringUtils.isBlank(uuid) || !requestUUID.equals(uuid)) {
+            return PagePath.login_page;
+        }
+        if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
+            logger.info("singIn userName/password is null!");
+            request.setAttribute("error_info", "请输入用户名/密码");
+            return PagePath.login_page;
+        }
         User user = userService.vaild(userName, password);
         if (null != user) {
             logger.info("singIn is OK! - {}", JSONObject.toJSONString(user));
             request.setAttribute("userName", user.getUserName());
+        } else {
+            logger.info("singIn userName/password is error!");
+            request.setAttribute("error_info", "用户名/密码错误");
+            return PagePath.login_page;
         }
-        logger.info("singIn is error!");
-        return "/index";
+        return PagePath.index_page;
+    }
+
+    void setUUID(HttpServletRequest request) {
+        request.getSession().setAttribute("uuid", UUID.randomUUID());
     }
 }

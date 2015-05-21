@@ -34,11 +34,12 @@
 				<h2 class="form-signin-heading">
 					Please sign in
 				</h2>
+				<h4 class="form-signin-heading">${error_info }</h4>
 				<label for="userName" class="sr-only">
 					Email address
 				</label>
 				<input type="text" id="userName" name="userName" class="form-control" placeholder="UserName"/>
-				<label for="inputPassword" class="sr-only">
+				<label for="password" class="sr-only">
 					Password
 				</label>
 				<input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
@@ -48,6 +49,7 @@
 						Remember me
 					</label>
 				</div>
+				<input type="hidden" id="uuid" value="${uuid }" name="uuid"/>
 				<button class="btn btn-lg btn-primary btn-block" type="submit">
 					Sign in
 				</button>
