@@ -8,12 +8,9 @@
 		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 		<meta name="description" content="" />
 		<meta name="author" content="" />
-		<title>
-			Signin Template for Bootstrap
-		</title>
+		<title>Signin</title>
 		<!-- Bootstrap core CSS -->
-		<link href="../css/bootstrap.min.css"
-		rel="stylesheet" />
+		<link href="../css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Custom styles for this template -->
 		<link href="../css/signin.css" rel="stylesheet" />
 		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
@@ -34,15 +31,14 @@
 				<h2 class="form-signin-heading">
 					Please sign in
 				</h2>
-				<h4 class="form-signin-heading">${error_info }</h4>
 				<label for="userName" class="sr-only">
 					Email address
 				</label>
-				<input type="text" id="userName" name="userName" class="form-control" placeholder="UserName"/>
+				<input type="text" id="userName" name="userName" class="form-control" placeholder="UserName" autofocus required/>
 				<label for="password" class="sr-only">
 					Password
 				</label>
-				<input type="password" id="password" name="password" class="form-control" placeholder="Password"/>
+				<input type="password" id="password" name="password" class="form-control" placeholder="Password" required/>
 				<div class="checkbox">
 					<label>
 						<input type="checkbox" value="remember-me" />
@@ -57,7 +53,10 @@
 		</div>
 		<!-- /container -->
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="../js/assets/ie10-viewport-bug-workaround.js">
-		</script>
+		<script src="../js/assets/ie10-viewport-bug-workaround.js"></script>
+		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+		<script src="../js/jquery.min.js"></script>
+		<!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="../js/bootstrap.min.js"></script>
 	</body>
 </html>
