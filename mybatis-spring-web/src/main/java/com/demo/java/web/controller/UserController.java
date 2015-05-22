@@ -55,7 +55,7 @@ public class UserController {
     @RequestMapping("/signIn")
     public String signIn(HttpServletRequest request, String userName, String password, String uuid) {
         String requestUUID = request.getSession().getAttribute("uuid") != null ? request.getSession().getAttribute("uuid").toString() : "";
-        setUUID(request); // 重置UUID
+        randomUUID(request); // 重置UUID
         if (StringUtils.isBlank(requestUUID) || StringUtils.isBlank(uuid) || !requestUUID.equals(uuid)) {
             return PagePath.login_page;
         }
@@ -76,7 +76,7 @@ public class UserController {
         return PagePath.index_page;
     }
 
-    void setUUID(HttpServletRequest request) {
+    void randomUUID(HttpServletRequest request) {
         request.getSession().setAttribute("uuid", UUID.randomUUID());
     }
 }
