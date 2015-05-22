@@ -23,8 +23,8 @@
 ##模块划分
 <a name="service"></a>
 ###Service模块
-* 主要存放实体以及相关核心代码
-* 主要分为四个子模块
+* 存放实体以及相关核心代码
+* 分为四个子模块
 	* dao
 		* `Mybatis`自动生成,一般存放`*Mapper.java`,相当于`Hibernate`中的`Dao`
 	* entity
@@ -36,11 +36,20 @@
 
 <a name="util"></a>
 ###Util模块
-* 主要存放项目需要的工具类
+* 存放项目需要的工具类
+* 模块划分
+	* Spring工具包
+		* Spring相关的处理方法
+	* MD5工具包
+		* 字符串加密使用(`MessageDigest`)
+	* Http工具包
+		* 后台发送`Post/Get`请求
+	* ......
 
 <a name="web"></a>
 ###Web模块
-* 主要用于展示页面,相当于`View`层
+* 用于展示页面,相当于`View`层
+* ......
 
 <a name="mybatis"></a>
 ##MyBatis配置
