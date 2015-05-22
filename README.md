@@ -179,7 +179,7 @@ mvn mybatis-generator:generate
 	* applicationContext.xml
 		* Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
 
-<a name="junit">
+<a name="junit"></a>
 ##Junit测试
 * Junit测试目录为Web模块下`src/test/java`目录
 * 新增Junit测试类直接集成`com.demo.java.test.AbstractTest`即可
