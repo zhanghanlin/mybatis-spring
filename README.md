@@ -54,7 +54,7 @@
 <a name="mybatis"></a>
 ##MyBatis配置
 <a name="mybatis-spring"></a>
-###`mybatis与spring整合配置
+###mybatis与spring整合配置
 * 相关配置文件对应Web模块`resources/spring/applicationContext-mybatis.xml`
 ```xml
 <configuration>
@@ -80,7 +80,7 @@
 </configuration>
 ```
 <a name="mybatis-data"></a>
-###mybatis数据源以及注入配置
+###Mybatis数据源以及注入配置
 * 相关配置文件对应Web模块`resources/spring/applicationContext-dataSource.xml`
 ```xml
 <!-- Mybatis -->
@@ -98,7 +98,7 @@
 </bean>
 ```
 <a name="mybatis-generator"></a>
-###mybatis自动生成代码
+###Mybatis自动生成代码
 * `Mybatis`支持根据数据库表自动生成`bean` `dao` `xml`文件
 * 对应配置文件Service模块`resources/generatorConfig.xml`
 * 注：因为本Demo中`bean` `dao` `xml`等文件都存放在Service中,所以配置文件放到Service模块
