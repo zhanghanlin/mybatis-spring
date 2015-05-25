@@ -5,6 +5,7 @@
 	* [Service模块](#service)
 	* [Util模块](#util)
 	* [Web模块](#web)
+	* [Redis模块](#Redis)
 * [MyBatis配置](#mybatis)
 	* [mybatis与spring整合配置](#mybatis-spring)
 	* [mybatis数据源以及注入配置](#mybatis-data)
@@ -54,6 +55,9 @@
 ###Web模块
 * 用于展示页面,相当于`View`层
 * ......
+<a name="Redis"></a>
+###Redis模块
+* 对Redis进行操作
 
 <a name="mybatis"></a>
 ##MyBatis配置
