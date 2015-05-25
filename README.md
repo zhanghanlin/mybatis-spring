@@ -2,14 +2,18 @@
 #<a name="index"></a>目录
 * [项目说明](#info)
 * [模块划分](#mobile)
-  * [Service模块](#service)
-  * [Util模块](#util)
-  * [Web模块](#web)
+	* [Service模块](#service)
+	* [Util模块](#util)
+	* [Web模块](#web)
 * [MyBatis配置](#mybatis)
- * [mybatis与spring整合配置](#mybatis-spring)
- * [mybatis数据源以及注入配置](#mybatis-data)
- * [mybatis自动生成代码](#mybatis-generator)
+	* [mybatis与spring整合配置](#mybatis-spring)
+	* [mybatis数据源以及注入配置](#mybatis-data)
+	* [mybatis自动生成代码](#mybatis-generator)
 * [Spring配置](#spring-config)
+* [Redis配置](#redis-config)
+	* [Redis版本说明](#redis-version)
+	* [Redis配置说明](#redis-conf)
+	* [Redis使用说明](#redis-info)
 * [Junit测试](#junit)
 * [登陆Demo](#login_demo)
 
@@ -175,6 +179,8 @@ mvn mybatis-generator:generate
 		* 用于配置数据源:`DruidDataSource`以及`Mybatis`相关配置
 	* applicationContext-mybatis.xml
 		* `Mybatis`配置文件
+	* applicationContext-redis.xml
+		* `Redis`配置文件
 	* applicationContext-profile.xml
 		* 用于配置多个需要加载的属性文件
 		* `Junit`由`@ActiveProfiles([profile])`指定加载的属性文件
@@ -187,6 +193,42 @@ mvn mybatis-generator:generate
 		```
 	* applicationContext.xml
 		* Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
+
+<a name="redis-config"></a>
+##Redis配置
+<a name="redis-version"></a>
+###Redis版本说明
+* Redis使用jedis-2.5.1
+* POM引用
+```XML
+<dependency>
+	<groupId>redis.clients</groupId>
+	<artifactId>jedis</artifactId>
+	<version>${jedis.version}</version>
+</dependency>
+```
+<a name="redis-conf"></a>
+###Redis配置说明
+* 自定义Jedis工具实现
+* Spring配置文件
+```XML
+<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+	<property name="maxTotal" value="${redis.maxTotal}" />
+	<property name="maxIdle" value="${redis.maxIdle}" />
+	<property name="maxWaitMillis" value="${redis.maxWaitMillis}" />
+	<property name="testOnBorrow" value="${redis.testOnBorrow}" />
+</bean>
+<bean id="jedisSupport" class="com.demo.java.utils.redis.JedisSupport"
+	c:jedisPoolConfig-ref="jedisPoolConfig" c:host="${redis.host}" c:port="${redis.port}" />
+```
+<a name="redis-info"></a>
+###Redis使用说明
+* 使用Spring注解将redis注入即可
+```Java
+@Resource
+JedisSupport jedisSupport;
+```
+* 可根据业务需求自定修改JedisSupport.java文件
 
 <a name="junit"></a>
 ##Junit测试
