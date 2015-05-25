@@ -9,6 +9,7 @@
 		<module>mybatis-spring-utils</module>
 		<module>mybatis-spring-web</module>
 		<module>mybatis-spring-service</module>
+		<module>mybatis-spring-redis</module>
 	</modules>
 	<properties>
 		<!-- other setting -->

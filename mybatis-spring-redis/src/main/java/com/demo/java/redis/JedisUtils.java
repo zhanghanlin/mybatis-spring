@@ -1,41 +1,12 @@
-package com.demo.java.utils.redis;
+package com.demo.java.redis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-public class JedisSupport {
+public class JedisUtils extends JedisSupport {
 
-    private final JedisPool jedisPool;
-    private JedisPoolConfig jedisPoolConfig;
-    private String host;
-    private int port;
-
-    public JedisPoolConfig getJedisPoolConfig() {
-        return jedisPoolConfig;
-    }
-
-    public void setJedisPoolConfig(JedisPoolConfig jedisPoolConfig) {
-        this.jedisPoolConfig = jedisPoolConfig;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public JedisSupport(JedisPoolConfig jedisPoolConfig, String host, int port) {
+    public JedisUtils(JedisPoolConfig jedisPoolConfig, String host, int port) {
         this.host = host;
         this.port = port;
         this.jedisPoolConfig = jedisPoolConfig;

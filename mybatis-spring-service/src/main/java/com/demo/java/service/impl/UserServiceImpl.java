@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 import com.demo.java.dao.UserMapper;
 import com.demo.java.dict.UserStatus;
 import com.demo.java.entity.User;
+import com.demo.java.redis.JedisUtils;
 import com.demo.java.service.UserService;
 import com.demo.java.utils.encry.MD5Type;
 import com.demo.java.utils.encry.MD5Utils;
-import com.demo.java.utils.redis.JedisSupport;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
 
     @Resource
-    JedisSupport jedisSupport;
+    JedisUtils jedisUtils;
     @Resource
     UserMapper userMapper;
 
@@ -129,19 +129,19 @@ public class UserServiceImpl implements UserService {
     }
 
     User getByRedis(String k) {
-        String user = jedisSupport.get(redis_id_prefix + k);
+        String user = jedisUtils.get(redis_id_prefix + k);
         if (user == null) {
-            user = jedisSupport.get(redis_name_prefix + k);
+            user = jedisUtils.get(redis_name_prefix + k);
         }
         return null;
     }
 
     void setByRedis(User user) {
-        jedisSupport.set(redis_id_prefix + user.getId(), user.toString());
-        jedisSupport.set(redis_name_prefix + user.getUserName(), user.toString());
+        jedisUtils.set(redis_id_prefix + user.getId(), user.toString());
+        jedisUtils.set(redis_name_prefix + user.getUserName(), user.toString());
     }
 
     void deleteByRedis(User user) {
-        jedisSupport.delete(new String[] { redis_id_prefix + user.getId(), redis_id_prefix + user.getUserName() });
+        jedisUtils.delete(new String[] { redis_id_prefix + user.getId(), redis_id_prefix + user.getUserName() });
     }
 }
