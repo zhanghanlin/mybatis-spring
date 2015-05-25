@@ -23,8 +23,8 @@
 ##模块划分
 <a name="service"></a>
 ###Service模块
-* 主要存放实体以及相关核心代码
-* 主要分为四个子模块
+* 存放实体以及相关核心代码
+* 分为四个子模块
 	* dao
 		* `Mybatis`自动生成,一般存放`*Mapper.java`,相当于`Hibernate`中的`Dao`
 	* entity
@@ -36,16 +36,25 @@
 
 <a name="util"></a>
 ###Util模块
-* 主要存放项目需要的工具类
+* 存放项目需要的工具类
+* 模块划分
+	* Spring工具包
+		* Spring相关的处理方法
+	* MD5工具包
+		* 字符串加密使用(`MessageDigest`)
+	* Http工具包
+		* 后台发送`Post/Get`请求
+	* ......
 
 <a name="web"></a>
 ###Web模块
-* 主要用于展示页面,相当于`View`层
+* 用于展示页面,相当于`View`层
+* ......
 
 <a name="mybatis"></a>
 ##MyBatis配置
 <a name="mybatis-spring"></a>
-###`mybatis与spring整合配置
+###mybatis与spring整合配置
 * 相关配置文件对应Web模块`resources/spring/applicationContext-mybatis.xml`
 ```xml
 <configuration>
@@ -71,7 +80,7 @@
 </configuration>
 ```
 <a name="mybatis-data"></a>
-###mybatis数据源以及注入配置
+###Mybatis数据源以及注入配置
 * 相关配置文件对应Web模块`resources/spring/applicationContext-dataSource.xml`
 ```xml
 <!-- Mybatis -->
@@ -89,7 +98,7 @@
 </bean>
 ```
 <a name="mybatis-generator"></a>
-###mybatis自动生成代码
+###Mybatis自动生成代码
 * `Mybatis`支持根据数据库表自动生成`bean` `dao` `xml`文件
 * 对应配置文件Service模块`resources/generatorConfig.xml`
 * 注：因为本Demo中`bean` `dao` `xml`等文件都存放在Service中,所以配置文件放到Service模块
@@ -179,7 +188,7 @@ mvn mybatis-generator:generate
 	* applicationContext.xml
 		* Web容器启动时需要只需加载该文件即可,其他需要加载的配置文件在该文件中配置
 
-<a name="junit">
+<a name="junit"></a>
 ##Junit测试
 * Junit测试目录为Web模块下`src/test/java`目录
 * 新增Junit测试类直接集成`com.demo.java.test.AbstractTest`即可
