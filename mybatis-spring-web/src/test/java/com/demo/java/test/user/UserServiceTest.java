@@ -19,10 +19,10 @@ public class UserServiceTest extends AbstractTest {
     @Resource
     UserService userService;
 
-    static Integer userId = 0;
+    static Integer userId = 10012;
 
     @Test
-    public void testAInsertSelective() {
+    public void testAInsert() {
         User user = new User();
         user.setUserName("test");
         user.setPassword("111111");
@@ -35,8 +35,8 @@ public class UserServiceTest extends AbstractTest {
     }
 
     @Test
-    public void testBSelectById() {
-        User user = userService.selectById(userId);
+    public void testBGetd() {
+        User user = userService.get(userId);
         logger.info(JSONObject.toJSONString(user));
     }
 

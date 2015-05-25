@@ -7,11 +7,11 @@ public interface UserMapper {
 
     Integer insert(User user);
 
-    User selectById(Integer id);
+    User get(Integer id);
 
-    int updateById(User user);
+    int update(User user);
 
-    User selectByUserName(String userName);
+    User getByUserName(String userName);
 
     int updatePassword(User user);
 }

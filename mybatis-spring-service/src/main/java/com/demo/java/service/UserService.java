@@ -9,6 +9,9 @@ public interface UserService {
 
     Logger logger = LoggerFactory.getLogger(UserService.class);
 
+    static final String redis_id_prefix = "USER_I_";
+    static final String redis_name_prefix = "USER_N_";
+
     /**
      * 
      * 根据用户Id删除用户. <br/>
@@ -19,6 +22,28 @@ public interface UserService {
      * @since JDK 1.7
      */
     int deleteById(Integer id);
+
+    /**
+     * 
+     * 根据用户Id冻结用户. <br/>
+     * 
+     * @author zhanghanlin
+     * @param id
+     * @return
+     * @since JDK 1.7
+     */
+    int freezeById(Integer id);
+
+    /**
+     * 更新用户状态.<br/>
+     * 
+     * @author zhanghanlin
+     * @param id
+     * @param status
+     * @return
+     * @since JDK 1.7
+     */
+    int updateStatus(Integer id, Integer status);
 
     /**
      * 
@@ -40,7 +65,7 @@ public interface UserService {
      * @return
      * @since JDK 1.7
      */
-    User selectById(Integer id);
+    User get(Integer id);
 
     /**
      * 
@@ -51,7 +76,7 @@ public interface UserService {
      * @return
      * @since JDK 1.7
      */
-    int updateById(User user);
+    int update(User user);
 
     /**
      * 
@@ -64,6 +89,16 @@ public interface UserService {
      * @since JDK 1.7
      */
     User vaild(String userName, String password);
+
+    /**
+     * 
+     * 根据用户名查询用户信息
+     * 
+     * @author zhanghanlin
+     * @param userName
+     * @since JDK 1.7
+     */
+    User getByUserName(String userName);
 
     /**
      * 更新用户密码.<br/>

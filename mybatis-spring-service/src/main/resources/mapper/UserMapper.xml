@@ -25,13 +25,13 @@
 		person_Id, status, created_at, changed_at,
 		version
 	</sql>
-	<select id="selectById" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="get" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from p_user
 		where id = #{id,jdbcType=INTEGER}
 	</select>
-	<select id="selectByUserName" resultMap="BaseResultMap"
+	<select id="getByUserName" resultMap="BaseResultMap"
 		parameterType="java.lang.String">
 		select
 		<include refid="Base_Column_List" />
@@ -123,7 +123,7 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateById" parameterType="com.demo.java.entity.User">
+	<update id="update" parameterType="com.demo.java.entity.User">
 		update p_user
 		<set>
 			<if test="userName != null">
