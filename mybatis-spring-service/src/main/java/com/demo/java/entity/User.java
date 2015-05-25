@@ -3,6 +3,8 @@ package com.demo.java.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.alibaba.fastjson.JSONObject;
+
 public class User implements Serializable {
 
     private static final long serialVersionUID = -5818849562109583062L;
@@ -159,6 +161,6 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", userName=" + userName + "]";
+        return JSONObject.toJSONString(this);
     }
 }

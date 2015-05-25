@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.demo.java.dao.UserMapper;
 import com.demo.java.dict.UserStatus;
 import com.demo.java.entity.User;
@@ -11,6 +12,7 @@ import com.demo.java.redis.JedisUtils;
 import com.demo.java.service.UserService;
 import com.demo.java.utils.encry.MD5Type;
 import com.demo.java.utils.encry.MD5Utils;
+import com.demo.java.utils.string.StringUtils;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
@@ -129,11 +131,15 @@ public class UserServiceImpl implements UserService {
     }
 
     User getByRedis(String k) {
-        String user = jedisUtils.get(redis_id_prefix + k);
-        if (user == null) {
-            user = jedisUtils.get(redis_name_prefix + k);
+        User user = null;
+        String user_str = jedisUtils.get(redis_id_prefix + k);
+        if (StringUtils.isBlank(user_str)) {
+            user_str = jedisUtils.get(redis_name_prefix + k);
         }
-        return null;
+        if (StringUtils.isNotBlank(user_str)) {
+            user = JSONObject.toJavaObject(JSONObject.parseObject(user_str), User.class);
+        }
+        return user;
     }
 
     void setByRedis(User user) {
