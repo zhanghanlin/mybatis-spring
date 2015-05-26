@@ -10,8 +10,7 @@ import com.demo.java.dict.UserStatus;
 import com.demo.java.entity.User;
 import com.demo.java.redis.JedisUtils;
 import com.demo.java.service.UserService;
-import com.demo.java.utils.encry.MD5Type;
-import com.demo.java.utils.encry.MD5Utils;
+import com.demo.java.utils.encry.DigestUtils;
 import com.demo.java.utils.string.StringUtils;
 
 @Service(value = "userService")
@@ -50,7 +49,7 @@ public class UserServiceImpl implements UserService {
     public Integer insert(User user) {
         int res = 0;
         try {
-            user.setPassword(MD5Utils.encode(user.getPassword(), MD5Type.MD5));
+            user.setPassword(DigestUtils.md5(user.getPassword()));
             res = userMapper.insert(user);
             if (res > 0) {
                 setByRedis(user);
@@ -89,7 +88,7 @@ public class UserServiceImpl implements UserService {
             String userPwd = user.getPassword();
             String inputPwd = "";
             try {
-                inputPwd = MD5Utils.encode(password, MD5Type.MD5);
+                inputPwd = DigestUtils.md5(password);
             } catch (Exception e) {
                 logger.error("vaild MD5Utils error : {}", e.getMessage(), e);
             }
@@ -106,7 +105,7 @@ public class UserServiceImpl implements UserService {
         User user = vaild(userName, oldPwd);
         if (null != user) {
             try {
-                user.setPassword(MD5Utils.encode(newPwd, MD5Type.MD5));
+                user.setPassword(DigestUtils.md5(newPwd));
                 res = userMapper.updatePassword(user);
                 if (res > 0) {
                     setByRedis(user);

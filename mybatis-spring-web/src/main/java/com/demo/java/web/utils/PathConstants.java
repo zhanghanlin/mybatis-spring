@@ -19,7 +19,7 @@ package com.demo.java.web.utils;
  * @since JDK 1.7
  * @see
  */
-public class PagePath {
+public class PathConstants {
 
     public static final String index_page = "/index";
     public static final String login_page = "/view/jsp/login";

@@ -1,14 +1,4 @@
-/**
- * Project Name:mybatis-spring-web
- * File Name:LoginController.java
- * Package Name:com.demo.java.web.controller
- * Date:2015-5-21下午3:43:53
- *
- */
-
 package com.demo.java.web.controller;
-
-import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,23 +12,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.demo.java.entity.User;
 import com.demo.java.service.UserService;
 import com.demo.java.utils.string.StringUtils;
-import com.demo.java.web.utils.PagePath;
+import com.demo.java.web.utils.PathConstants;
 
-/**
- * ClassName:LoginController <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON. <br/>
- * Date: 2015-5-21 下午3:43:53 <br/>
- * 
- * @author zhanghanlin
- * @version
- * @since JDK 1.7
- * @see
- */
 @Controller
-public class UserController {
+public class LoginController extends BaseController {
 
-    static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Resource
     UserService userService;
@@ -57,26 +36,22 @@ public class UserController {
         String requestUUID = request.getSession().getAttribute("uuid") != null ? request.getSession().getAttribute("uuid").toString() : "";
         randomUUID(request); // 重置UUID
         if (StringUtils.isBlank(requestUUID) || StringUtils.isBlank(uuid) || !requestUUID.equals(uuid)) {
-            return PagePath.login_page;
+            return PathConstants.login_page;
         }
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
-            logger.info("singIn userName/password is null!");
+            logger.debug("singIn userName/password is null!");
             request.setAttribute("error_info", "请输入用户名/密码");
-            return PagePath.login_page;
+            return PathConstants.login_page;
         }
         User user = userService.vaild(userName, password);
         if (null != user) {
-            logger.info("singIn is OK! - {}", JSONObject.toJSONString(user));
+            logger.debug("singIn is OK! - {}", JSONObject.toJSONString(user));
             request.setAttribute("userName", user.getUserName());
         } else {
-            logger.info("singIn userName/password is error!");
+            logger.debug("singIn userName/password is error!");
             request.setAttribute("error_info", "用户名/密码错误");
-            return PagePath.login_page;
+            return PathConstants.login_page;
         }
-        return PagePath.index_page;
-    }
-
-    void randomUUID(HttpServletRequest request) {
-        request.getSession().setAttribute("uuid", UUID.randomUUID());
+        return PathConstants.index_page;
     }
 }
