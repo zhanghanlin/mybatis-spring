@@ -17,7 +17,7 @@
 		<level value="WARN" />
 	</logger>
 	<logger name="com.demo.java">
-		<level value="INFO" />
+		<level value="DEBUG" />
 	</logger>
 	<!-- Console -->
 	<root level="INFO">
