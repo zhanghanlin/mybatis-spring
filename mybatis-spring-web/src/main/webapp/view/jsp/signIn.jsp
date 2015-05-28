@@ -9,25 +9,13 @@
 		<meta name="description" content="" />
 		<meta name="author" content="" />
 		<title>Signin</title>
-		<!-- Bootstrap core CSS -->
-		<link href="../css/bootstrap.min.css" rel="stylesheet" />
 		<!-- Custom styles for this template -->
-		<link href="../css/signin.css" rel="stylesheet" />
-		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-		<!--[if lt IE 9]>
-			<script src="../js/assets/ie8-responsive-file-warning.js"></script>
-		<![endif]-->
-		<script src="../js/assets/ie-emulation-modes-warning.js"></script>
-		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media
-		queries -->
-		<!--[if lt IE 9]>
-			<script src="../js/html5shiv.min.js"></script>
-			<script src="../js/respond.min.js"></script>
-		<![endif]-->
+		<link href="/css/signin.css" rel="stylesheet" />
 	</head>
 	<body>
+		<%@include file="/common/head.html" %> 
 		<div class="container">
-			<form class="form-signin" action="/signIn" method="post">
+			<form class="form-signin" action="/signInSubmit" method="post">
 				<h2 class="form-signin-heading">
 					Please sign in
 				</h2>
@@ -51,12 +39,6 @@
 				</button>
 			</form>
 		</div>
-		<!-- /container -->
-		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="../js/assets/ie10-viewport-bug-workaround.js"></script>
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="../js/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="../js/bootstrap.min.js"></script>
+		<%@include file="/common/footer.html" %> 
 	</body>
 </html>

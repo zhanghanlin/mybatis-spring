@@ -39,7 +39,6 @@ public class BaseController {
         if (UUIDObj != null) {
             requestUUID = UUIDObj.toString();
         }
-        randomUUID(request); // 重置UUID
         String uuid = request.getParameter(WebConstants.uuid);
         logger.debug("checkUUID  uuid > {} , requestUUID > {}", uuid, requestUUID);
         if (StringUtils.isBlank(requestUUID) || StringUtils.isBlank(uuid) || !requestUUID.equals(uuid)) {

@@ -30,6 +30,12 @@ public class SignInController extends BaseController {
         return PathConstants.index_page;
     }
 
+    @RequestMapping("/signIn")
+    public String signIn(HttpServletRequest request) {
+        randomUUID(request); // 重置UUID
+        return PathConstants.signIn_page;
+    }
+
     /**
      * 
      * 登陆.<br/>
@@ -39,10 +45,12 @@ public class SignInController extends BaseController {
      * @return
      * @since JDK 1.7
      */
-    @RequestMapping("/signIn")
-    public String signIn(HttpServletRequest request, HttpServletResponse response, String userName, String password, String uuid) {
-        if (!checkUUID(request)) {
-            return PathConstants.signIn_page;
+    @RequestMapping("/signInSubmit")
+    public String submit(HttpServletRequest request, HttpServletResponse response, String userName, String password, String uuid) {
+        boolean checkUUID = checkUUID(request);
+        randomUUID(request); // 重置UUID
+        if (!checkUUID) {
+            return PathConstants.signUp_page;
         }
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
             logger.debug("singIn userName/password is null!");
