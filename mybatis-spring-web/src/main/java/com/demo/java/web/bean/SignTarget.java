@@ -1,53 +1,30 @@
-/**
- * Project Name:mybatis-spring-web
- * File Name:SignTarget.java
- * Package Name:com.demo.java.web.bean
- * Date:2015-5-27下午2:39:35
- *
- */
-
 package com.demo.java.web.bean;
 
-import java.util.Date;
+import org.joda.time.DateTime;
 
-/**
- * ClassName:SignTarget <br/>
- * Function: TODO ADD FUNCTION. <br/>
- * Reason: TODO ADD REASON. <br/>
- * Date: 2015-5-27 下午2:39:35 <br/>
- * 
- * @author zhanghanlin
- * @version
- * @since JDK 1.7
- * @see
- */
+import com.demo.java.utils.string.StringUtils;
+
 public class SignTarget {
 
-    private String uid;
-    private String uName;
-    private Date time;
+    private final String name;
+    private final String key;
+    private final DateTime time;
 
-    public String getUid() {
-        return uid;
+    public SignTarget(String name) {
+        this.key = StringUtils.getRandomString(8);
+        this.name = name;
+        this.time = DateTime.now();
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public String getName() {
+        return name;
     }
 
-    public String getuName() {
-        return uName;
+    public String getKey() {
+        return key;
     }
 
-    public void setuName(String uName) {
-        this.uName = uName;
-    }
-
-    public Date getTime() {
+    public DateTime getTime() {
         return time;
-    }
-
-    public void setTime(Date time) {
-        this.time = time;
     }
 }

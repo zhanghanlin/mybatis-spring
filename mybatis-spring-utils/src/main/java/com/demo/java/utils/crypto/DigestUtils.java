@@ -1,4 +1,4 @@
-package com.demo.java.utils.encry;
+package com.demo.java.utils.crypto;
 
 import java.security.MessageDigest;
 

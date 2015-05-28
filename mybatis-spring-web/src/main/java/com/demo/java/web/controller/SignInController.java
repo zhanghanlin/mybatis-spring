@@ -13,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.demo.java.entity.User;
 import com.demo.java.service.UserService;
 import com.demo.java.utils.string.StringUtils;
+import com.demo.java.web.bean.SignTarget;
 import com.demo.java.web.cookie.CookieConstants;
 import com.demo.java.web.cookie.CookieUtils;
 import com.demo.java.web.utils.PathConstants;
@@ -64,7 +65,10 @@ public class SignInController extends BaseController {
             return PathConstants.signIn_page;
         }
         logger.debug("singIn is OK! - {}", JSONObject.toJSONString(user));
-        request.getSession().setAttribute("userName", user.getUserName());
+        SignTarget st = new SignTarget(userName);
+        String token = st.getName() + "@@" + st.getTime().toString();
+        request.getSession().setAttribute("userName", userName);
+        request.getSession().setAttribute("token", token);
         CookieUtils.addCookie(request, response, CookieConstants.USERNAME, user.getUserName());
         return "redirect:/index";
     }

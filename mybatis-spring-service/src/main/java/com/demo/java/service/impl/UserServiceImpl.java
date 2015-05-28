@@ -10,7 +10,7 @@ import com.demo.java.dict.UserStatus;
 import com.demo.java.entity.User;
 import com.demo.java.redis.JedisUtils;
 import com.demo.java.service.UserService;
-import com.demo.java.utils.encry.DigestUtils;
+import com.demo.java.utils.crypto.DigestUtils;
 import com.demo.java.utils.string.StringUtils;
 
 @Service(value = "userService")

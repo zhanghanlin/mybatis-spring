@@ -1,24 +1,45 @@
 package com.demo.java.utils.string;
 
+import java.util.Random;
+
 public class StringUtils extends org.apache.commons.lang.StringUtils {
-    /**
-     * 
-     * 将字节数组转成 16. <br/>
-     * 进制的字符串来表示.<br/>
-     * 每个字节采用两个字符表表示.<br/>
-     * 
-     * @author zhanghanlin
-     * @param bytes
-     * @return
-     * @since JDK 1.7
-     */
-    public static String byte2Hex(byte[] bytes) {
-        char[] HEX = "0123456789abcdef".toCharArray();
-        char[] chars = new char[bytes.length * 2];
-        for (int i = 0, offset = 0; i < bytes.length; i++) {
-            chars[offset++] = HEX[(bytes[i] >> 4) & 0xf];
-            chars[offset++] = HEX[bytes[i] & 0xf];
+
+    public static String getRandomString(int length) {
+        String letter = "abcdefghijklmnopqrstuvwxyz";
+        String number = "0123456789";
+        String character = "!@#$%^&*()_+-=";
+        StringBuffer randomStr = new StringBuffer(letter).append(number).append(character);
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int num = random.nextInt(randomStr.length());
+            sb.append(randomStr.charAt(num));
         }
-        return new String(chars);
+        return sb.toString();
+    }
+
+    public static String byte2Hex(byte[] bytes) {
+        String hex = "", tmp = "";
+        for (int i = 0; i < bytes.length; i++) {
+            tmp = (Integer.toHexString(bytes[i] & 0XFF));
+            if (tmp.length() == 1) {
+                hex = hex + "0" + tmp;
+            } else {
+                hex = hex + tmp;
+            }
+        }
+        tmp = null;
+        return hex.toUpperCase();
+    }
+
+    public static byte[] hex2byte(String str) {
+        byte[] arrB = str.getBytes();
+        int iLen = arrB.length;
+        byte[] arrOut = new byte[iLen / 2];
+        for (int i = 0; i < iLen; i = i + 2) {
+            String strTmp = new String(arrB, i, 2);
+            arrOut[i / 2] = (byte) Integer.parseInt(strTmp, 16);
+        }
+        return arrOut;
     }
 }
