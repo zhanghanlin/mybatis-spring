@@ -30,6 +30,6 @@ public class SignUpController extends BaseController {
      */
     @RequestMapping("/signUp")
     public String signUp(HttpServletRequest request, String userName, String password, String uuid) {
-        return PathConstants.index_page;
+        return PathConstants.signUp_page;
     }
 }

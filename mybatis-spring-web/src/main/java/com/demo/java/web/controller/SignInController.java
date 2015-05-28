@@ -42,18 +42,18 @@ public class SignInController extends BaseController {
     @RequestMapping("/signIn")
     public String signIn(HttpServletRequest request, HttpServletResponse response, String userName, String password, String uuid) {
         if (!checkUUID(request)) {
-            return PathConstants.login_page;
+            return PathConstants.signIn_page;
         }
         if (StringUtils.isBlank(userName) || StringUtils.isBlank(password)) {
             logger.debug("singIn userName/password is null!");
             request.setAttribute("error_info", "请输入用户名/密码");
-            return PathConstants.login_page;
+            return PathConstants.signIn_page;
         }
         User user = userService.vaild(userName, password);
         if (null == user) {
             logger.debug("singIn userName/password is error!");
             request.setAttribute("error_info", "用户名/密码错误");
-            return PathConstants.login_page;
+            return PathConstants.signIn_page;
         }
         logger.debug("singIn is OK! - {}", JSONObject.toJSONString(user));
         request.getSession().setAttribute("userName", user.getUserName());

@@ -22,5 +22,6 @@ package com.demo.java.web.utils;
 public class PathConstants {
 
     public static final String index_page = "/index";
-    public static final String login_page = "/view/jsp/login";
+    public static final String signIn_page = "/view/jsp/signIn";
+    public static final String signUp_page = "/view/jsp/signUp";
 }
