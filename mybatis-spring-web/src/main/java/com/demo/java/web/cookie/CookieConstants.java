@@ -22,5 +22,6 @@ package com.demo.java.web.cookie;
 public class CookieConstants {
 
     public final static int MAX_AGE = 24 * 60 * 60; // seconds
-    public final static String USERNAME = "USERNAME"; // seconds
+    public final static String USERNAME = "USERNAME";
+    public final static String TOKEN = "TOKEN";
 }

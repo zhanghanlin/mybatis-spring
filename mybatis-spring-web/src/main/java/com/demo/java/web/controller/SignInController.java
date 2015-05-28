@@ -66,10 +66,12 @@ public class SignInController extends BaseController {
         }
         logger.debug("singIn is OK! - {}", JSONObject.toJSONString(user));
         SignTarget st = new SignTarget(userName);
-        String token = st.getName() + "@@" + st.getTime().toString();
+        logger.debug("singIn SignTarget - {}", st.toString());
         request.getSession().setAttribute("userName", userName);
-        request.getSession().setAttribute("token", token);
+        request.getSession().setAttribute("token", st.getToken());
+        logger.debug("singIn token - {}", st.getToken());
         CookieUtils.addCookie(request, response, CookieConstants.USERNAME, user.getUserName());
+        CookieUtils.addCookie(request, response, CookieConstants.TOKEN, st.getToken());
         return "redirect:/index";
     }
 }
