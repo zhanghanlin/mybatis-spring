@@ -9,18 +9,14 @@ public class SignTarget {
 
     private final String name;
     private final String key;
-    private final DateTime time;
-    private String token;
+    private final String token;
+    private DateTime time;
 
     public SignTarget(String name) {
         this.key = StringUtils.getRandomString(8);
         this.name = name;
-        this.time = DateTime.now();
-        try {
-            this.token = DESUtils.encrypt(name + "@@" + time.toString(), key);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.token = DESUtils.encrypt(name, key);
+        this.time = DateTime.now().plusHours(2);
     }
 
     public String getName() {
@@ -31,16 +27,20 @@ public class SignTarget {
         return key;
     }
 
-    public DateTime getTime() {
-        return time;
-    }
-
     public String getToken() {
         return token;
     }
 
+    public void setTime(DateTime time) {
+        this.time = time;
+    }
+
+    public DateTime getTime() {
+        return time;
+    }
+
     @Override
     public String toString() {
-        return "SignTarget [name=" + name + ", key=" + key + ", time=" + time + "]";
+        return "SignTarget [name=" + name + ", key=" + key + "]";
     }
 }

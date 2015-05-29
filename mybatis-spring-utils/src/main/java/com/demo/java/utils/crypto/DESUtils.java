@@ -5,9 +5,14 @@ import java.security.Key;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.demo.java.utils.string.StringUtils;
 
 public class DESUtils {
+
+    static final Logger logger = LoggerFactory.getLogger(DESUtils.class);
     /** 加密算法,可用 DES,DESede,Blowfish. */
     private final static String ALGORITHM = "DES";
 
@@ -20,32 +25,43 @@ public class DESUtils {
      * @throws Exception
      * @since JDK 1.7
      */
-    private static Key getKey(byte[] keyBytes) throws Exception {
-        byte[] bytes = new byte[8];// 创建一个空的8位字节数组（默认值为0）
-        for (int i = 0; (i < keyBytes.length) && (i < bytes.length); i++) {// 将原始字节数组转换为8位
+    private static Key getKey(byte[] keyBytes) {
+        byte[] bytes = new byte[8];
+        for (int i = 0; (i < keyBytes.length) && (i < bytes.length); i++) {
             bytes[i] = keyBytes[i];
         }
-        Key key = new SecretKeySpec(bytes, ALGORITHM);// 生成密钥
-        return key;
+        return new SecretKeySpec(bytes, ALGORITHM);
     }
 
-    public static byte[] encrypt(byte[] data, byte[] key) throws Exception {
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
-        cipher.init(Cipher.ENCRYPT_MODE, getKey(key));
-        return cipher.doFinal(data);
+    public static byte[] encrypt(byte[] data, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.ENCRYPT_MODE, getKey(key));
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            logger.error("encrypt error : {}", e.getMessage(), e);
+            return null;
+        }
     }
 
-    public static String encrypt(String data, String key) throws Exception {
+    public static String encrypt(String data, String key) {
+        logger.debug("encrypt [data : {}, key : {}]", data, key);
         return StringUtils.byte2Hex(encrypt(data.getBytes(), key.getBytes()));
     }
 
-    public static byte[] decrypt(byte[] data, byte[] key) throws Exception {
-        Cipher cipher = Cipher.getInstance(ALGORITHM);
-        cipher.init(Cipher.DECRYPT_MODE, getKey(key));
-        return cipher.doFinal(data);
+    public static byte[] decrypt(byte[] data, byte[] key) {
+        try {
+            Cipher cipher = Cipher.getInstance(ALGORITHM);
+            cipher.init(Cipher.DECRYPT_MODE, getKey(key));
+            return cipher.doFinal(data);
+        } catch (Exception e) {
+            logger.error("decrypt error : {}", e.getMessage(), e);
+            return null;
+        }
     }
 
-    public static String decrypt(String data, String key) throws Exception {
+    public static String decrypt(String data, String key) {
+        logger.debug("decrypt [data : {}, key : {}]", data, key);
         return new String(decrypt(StringUtils.hex2byte(data), key.getBytes()));
     }
 }

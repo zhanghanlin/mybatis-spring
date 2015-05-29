@@ -1,3 +1,3 @@
 $('#navbar button').click(function(){
-	window.open("/" + $(this).attr('id'));
+	window.location.href = "/" + $(this).attr('id');
 });

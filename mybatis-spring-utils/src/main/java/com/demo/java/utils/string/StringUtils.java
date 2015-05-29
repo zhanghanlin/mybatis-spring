@@ -5,10 +5,7 @@ import java.util.Random;
 public class StringUtils extends org.apache.commons.lang.StringUtils {
 
     public static String getRandomString(int length) {
-        String letter = "abcdefghijklmnopqrstuvwxyz";
-        String number = "0123456789";
-        String character = "!@#$%^&*()_+-=";
-        StringBuffer randomStr = new StringBuffer(letter).append(number).append(character);
+        String randomStr = "abcdefghijklmnopqrstuvwxyz0123456789=!@#";
         Random random = new Random();
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < length; i++) {

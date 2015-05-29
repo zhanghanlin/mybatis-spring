@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.annotation.JSONField;
 
 public class User implements Serializable {
 
@@ -13,6 +14,7 @@ public class User implements Serializable {
 
     private String userName;
 
+    @JSONField(serialize = false)
     private String password;
 
     private String mobile;
@@ -37,6 +39,7 @@ public class User implements Serializable {
 
     private Date changedAt;
 
+    @JSONField(serialize = false)
     private Integer version;
 
     public Integer getId() {
