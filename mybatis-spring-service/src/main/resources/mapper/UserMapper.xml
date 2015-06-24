@@ -45,7 +45,7 @@
 	</delete>
 	<insert id="insert" parameterType="com.demo.java.entity.User"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into p_user
+		insert into user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="userName != null">
 				user_name,
